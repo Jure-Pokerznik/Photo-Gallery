@@ -50,20 +50,22 @@ $opis_albuma = $_POST['opis_albuma'];
 $status='procesiranje';
 //spremenljivka za ustvarjanje naključnih celih števil
 $random=rand();
-//$_FILES['userfile']['tmp_name'] začasno ime datoteke
+//$_FILES['userfile']['tmp_name'] začasno ime datoteke ki ga nardi php
 $nalozena_slika = $_FILES['nalozi']['tmp_name'];
-
+//Naredimo novo sliko iz naložene, da se lahko spreminja velikost
 $originalna = imagecreatefromjpeg($nalozena_slika);
-//pridobimo sirino in visino naložene slike
+//pridobimo sirino in visino originalne naložene slike
 list($sirina,$visina)=getimagesize($nalozena_slika);
 
 //nalozeno sliko spremenimo v manjso (da se lahko uporabi pri urejanju albumov)
+//naredi začasno sliko, ki se kasneje izbriše v imagedestroy
 $nova_sirina=290;
 $nova_visina=($visina/$sirina)*300;
 $nova=imagecreatetruecolor($nova_sirina,$nova_visina);
 //destination,source,x,y,x,y,destination_w,destination_h,source_w,source_h
 imagecopyresampled($nova,$originalna,0,0,0,0,$nova_sirina,$nova_visina,$sirina,$visina);
-//slika se shrani v mapo zmanjsane_slike in dobi zraven se naključna cela števila, da se slike ne overwritajo, če se naloži več slik, ki imajo isto ime
+//slika se shrani v mapo zmanjsane_slike in dobi zraven se naključna cela števila, 
+//da se slike ne overwritajo, če se naloži več slik, ki imajo isto ime
 $filename = "zmanjsane_slike/".$random. $_FILES['nalozi']['name'];
 //nardi novo sliko s qualiteto 100%
 imagejpeg($nova,$filename,100);
@@ -104,7 +106,7 @@ echo " <div class='alert alert-success'>Album dodan.</div>";
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6"><!--multipart/form-data => required for file upload-->
+                                <div class="col-lg-6"><!--multipart/form-data => rabis za file upload-->
                                     <form action="#" method="post" enctype="multipart/form-data" name="nalozi">
                                        
                                         <div class="form-group">
