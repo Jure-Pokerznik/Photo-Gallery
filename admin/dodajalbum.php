@@ -54,6 +54,11 @@ $random=rand();
 $nalozena_slika = $_FILES['nalozi']['tmp_name'];
 //Naredimo novo sliko iz naložene, da se lahko spreminja velikost
 $originalna = imagecreatefromjpeg($nalozena_slika);
+
+//TODO:
+//https://stackoverflow.com/questions/13596794/resize-images-with-php-support-png-jpg
+//Support za png
+
 //pridobimo sirino in visino originalne naložene slike
 list($sirina,$visina)=getimagesize($nalozena_slika);
 

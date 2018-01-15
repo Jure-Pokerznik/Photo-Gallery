@@ -16,6 +16,9 @@
     <!-- Custom styles for this template -->
     <link href="css/3-col-portfolio.css" rel="stylesheet">
 
+	<!-- Bootsrap tagsinput za tagganje galerije -->
+	<link href="vendor/bootstrap-tagsinput.css rel="stylesheet">
+
   </head>
 
   <body>

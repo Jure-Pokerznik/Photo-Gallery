@@ -9,6 +9,11 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootsrap tagsinput za tagganje galerije -->
+	<script src="vendor/bootstrap-tagsinput.js"></script>
+	<script src="vendor/bootstrap-tagsinput-angular.js"></script>
+
+
 
   </body>
 

@@ -40,8 +40,8 @@ include 'meni-stranski.php';
                            <?php
 include "povezi.php";
 if (isset($_GET["stran"])) { $stran = $_GET["stran"]; } else { $stran=1; };
-$zacetnastran = ($stran-1) * 10;
-$result = mysqli_query ($povezi, "SELECT * FROM album WHERE status='procesiranje' ORDER BY ID DESC LIMIT $zacetnastran, 10");
+$zacetnastran = ($stran-1) * 3;
+$result = mysqli_query ($povezi, "SELECT * FROM album WHERE status='procesiranje' ORDER BY ID DESC LIMIT $zacetnastran, 3");
 ?>
 <!--table za izpis-->
 <table class="table">
@@ -79,10 +79,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 <?php
 $result = mysqli_query($povezi,"SELECT COUNT(naslov_albuma) FROM album");
 $row = mysqli_fetch_row($result);
-$total_records = $row[0]; //preveri kolko je vseh albumov
-$total_pages = ceil($total_records / 10); //vse albume deli z 10 (torej če je =>11 vnosov bo pokazalo dodatno/e strani)
-for ($i=1; $i<=$total_pages; $i++) { 
-echo "<a href='uredialbum.php?stran=".$i."' class='navigation_item selected_navigation_item'>".$i."</a> ";
+$vsi_albumi = $row[0]; //preveri kolko je vseh albumov
+$strani = ceil($vsi_albumi / 3); //vse albume deli z 3 (torej če je =>4 vnosov bo pokazalo dodatno stran)
+for ($i=1; $i<=$strani; $i++) { 
+echo "<a href='uredialbum.php?stran=".$i."'>".$i."</a> "; //TODO: dodaj class 
 };
 ?>
 

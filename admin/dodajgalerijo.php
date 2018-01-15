@@ -32,9 +32,73 @@ include 'meni-stranski.php';
     </div>
     <div class="col-sm-9 col-lg-10">
       <h3>Dodaj Galerijo</h3>
+<?php
+        
+        if(isset($_POST['submit']))
+{
+$ename = $_POST['galerija_link'];
+}
+            ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form action="galerija_link_dodaj_slike.php" method="post" enctype="multipart/form-data" name="upload">
+                                       
+                                        <div class="form-group">
+                                            Izberite album v katerega želite dodati slike
+                           <?php 
+            include"povezi.php";
+$rs_result = mysqli_query ($povezi,"SELECT * FROM album WHERE status='procesiranje'");
+echo "<select class='form-control' name='galerija_link'>";
+while ($row = mysqli_fetch_assoc($rs_result)) {
+
+
+echo "<option value=$row[ID]>$row[naslov_albuma]</option>";
+                                        };
+                                        echo "</select>";
+                                        
+                                        ?>
+                                        </div>
+                                                                                
+                                        <button type="submit" class="btn btn-primary" name="submit">Naprej</button>
+                                        
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
