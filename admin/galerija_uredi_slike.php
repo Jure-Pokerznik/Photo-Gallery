@@ -33,27 +33,22 @@ include 'meni-stranski.php';
       </nav>
     </div>
     <div class="col-sm-9 col-lg-10">
-      <h3>Uredi Album</h3>
+      <h3>Uredi Galerijo</h3>
 
                         <div class="panel-body">
                            <div class="table-responsive table-bordered">
                            <?php
 include "povezi.php";
+$id_album = $_REQUEST['id'];
 if (isset($_GET["stran"])) { $stran = $_GET["stran"]; } else { $stran=1; };
-$zacetnastran = ($stran-1) * 3;
-$result = mysqli_query ($povezi, "SELECT * FROM album WHERE status='procesiranje' ORDER BY ID DESC LIMIT $zacetnastran, 3");
-?>
-<?php
-$albumi = mysqli_query($povezi,"SELECT COUNT(*) AS vsi_albumi FROM album WHERE status='procesiranje'");
-$albumi_vrednost = mysqli_fetch_assoc($albumi);
-echo "<h4>Trenutno število aktivnih albumov: ".$albumi_vrednost['vsi_albumi']." </h4>";
+$zacetnastran = ($stran-1) * 10;
+$result = mysqli_query ($povezi, "SELECT * FROM galerija WHERE status='procesiranje' AND album_id='$id_album' ORDER BY ID DESC LIMIT $zacetnastran, 10");
 ?>
 <!--table za izpis-->
 <table class="table">
 	<thead>
 		<tr>
-			<th width="20%">Ime albuma</th>
-			<th width="30%">Opis</th>
+			<th width="50%">Ime</th>
 			<th width="25%">Predogled slike</th>
 			<th colspan=2 width="25%">Izbriši in popravi</th>
 		</tr>
@@ -64,16 +59,11 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 
 <tbody>
-	<tr>	<!-- 	uredi_sliko = spremeni thumbnail;
- 			uredi_album = spremeni name, desc -->
-		<td> <?php echo $row["naslov_albuma"]; ?> </td>
-		<td><?php echo $row["opis_albuma"]; ?></td>
-		<!--uredi_sliko.php?uredi=(številka vrstice (ID) iz baze)-->
-		<td><a href='uredi_sliko.php?uredi=<?php echo  $row["ID"];?>'><img src="zmanjsane_slike/<?php echo $row["slika"]; ?>"  width="290px"/>Zamenjaj sliko<!--290 max ker so thumbnaili 290--></a></td>
-		<td><a href='zbrisi_sliko.php?zbrisi=<?php echo $row["ID"]; ?>'>Izbriši</a> | <a href = 'uredi_album.php?uredi=<?php echo $row["ID"]; ?> &ime_a=<?php echo $row["naslov_albuma"]; ?> &opis_a=<?php echo $row["opis_albuma"]; ?>&slika_a=<?php echo $row["slika"]; ?> '>Uredi</a>
-<!--TODO: spremeni linke za slikice; posebej link za urejanje thumbnaila? -->
+<tr>
+	<td><?php echo $row["slika_galerija"]; ?></td> <!--add width?-->
+	<td><a href='spremeni_sliko_galerija.php?zbrisi=<?php echo  $row["ID"];?>&id2=<?php echo $row["album_id"]; ?>'><img src="zmanjsane_slike_galerija/<?php echo $row["slika_galerija"]; ?>"/>Spremeni sliko</a></td>
+	<td><a href='zbrisi_galerijo.php?galerija_id=<?php echo $row["ID"]; ?> && galerija_album_id=<?php echo $row["album_id"]; ?>'>Delete</a>
                                         </tr>
-										
 										</tbody>
 
 <?php
@@ -82,12 +72,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 </table>
 <!--strani-->
 <?php
-$result = mysqli_query($povezi,"SELECT COUNT(naslov_albuma) FROM album");
+$result = mysqli_query($povezi,"SELECT COUNT(album_id) FROM galerija WHERE album_id='$id_album' AND status='procesiranje'");
 $row = mysqli_fetch_row($result);
 $vsi_albumi = $row[0]; //preveri kolko je vseh albumov
-$strani = ceil($vsi_albumi / 3); //vse albume deli z 3 (torej če je =>4 vnosov bo pokazalo dodatno stran)
+$strani = ceil($vsi_albumi / 10); //vse albume deli z 3 (torej če je =>4 vnosov bo pokazalo dodatno stran)
 for ($i=1; $i<=$strani; $i++) { 
-echo "<a href='uredialbum.php?stran=".$i."'>".$i."</a> "; //TODO: dodaj class 
+//echo "<a href='galerija_uredi_slike.php?stran=".$i."'>".$i."</a> "; //TODO: dodaj class 
+echo "<a href='galerija_uredi_slike.php?stran=$i&id=$id_album'>".$i."</a> ";
 };
 ?>
 

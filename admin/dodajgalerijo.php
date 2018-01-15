@@ -51,9 +51,9 @@ $ename = $_POST['galerija_link'];
                                             Izberite album v katerega želite dodati slike
                            <?php 
             include"povezi.php";
-$rs_result = mysqli_query ($povezi,"SELECT * FROM album WHERE status='procesiranje'");
+$result = mysqli_query ($povezi,"SELECT * FROM album WHERE status='procesiranje'");
 echo "<select class='form-control' name='galerija_link'>";
-while ($row = mysqli_fetch_assoc($rs_result)) {
+while ($row = mysqli_fetch_assoc($result)) {
 
 
 echo "<option value=$row[ID]>$row[naslov_albuma]</option>";

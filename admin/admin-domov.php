@@ -32,6 +32,13 @@ include 'meni-stranski.php';
     </div>
     <div class="col-sm-9 col-lg-10">
       Kaj bomo počeli danes?
+	<p>
+	<?php
+include 'povezi.php';
+$albumi = mysqli_query($povezi,"SELECT COUNT(*) AS vsi_albumi FROM album WHERE status='procesiranje'");
+$albumi_vrednost = mysqli_fetch_assoc($albumi);
+echo "Trenutno število aktivnih albumov: ".$albumi_vrednost['vsi_albumi'].".";
+?> </p>
     </div>
   </div>
 </div>
