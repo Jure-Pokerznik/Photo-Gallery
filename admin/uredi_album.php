@@ -57,7 +57,7 @@ else
 include "povezi.php";
 
 mysqli_query($povezi,"UPDATE album SET naslov_albuma='$naslov_albuma',opis_albuma='$opis_albuma' WHERE ID = '$kljuc_id'");
-//echo "<script>location.href='uredialbum.php'</script>"; //redirect takoj
+//echo "<script>location.href='uredialbum.php'</script>"; //redirect 
 echo " <div class='alert alert-success'>Album spremenjen! <a href='uredialbum.php'>Prikaži</a></div>"; //alert + link
 
 }
@@ -74,7 +74,7 @@ echo " <div class='alert alert-success'>Album spremenjen! <a href='uredialbum.ph
                                     <form action="#" method="post" enctype="multipart/form-data" name="upload">
                                        <div class="alert alert-info"><?php echo "Trenutno urejate:".$br."ID = ".$kljuc_id.$br."Naslov albuma = ".$kljuc_naslov.$br."Opis = ".$kljuc_opis;?></div>
                                         <div class="form-group">
-                                            <label>Naslov albuma</label><!--name="aname"-->
+                                            <label>Naslov albuma</label>
                                             <input class="form-control" placeholder="Naslov albuma (primer: Drevesa)" name="naslov_a" value="<? echo $kljuc_naslov ?>"><!--value echo prikaze prejsnje ime albuma-->
                                         </div>
                                        <div class="form-group">

@@ -34,11 +34,11 @@ include 'meni-stranski.php';
       <h3>Uredi Galerijo</h3>
 
 <?php
-		
-		if(isset($_POST['submit']))
-{
-$ename = $_POST['galerija_link'];
-}
+//$kljuc1=$_REQUEST['galerija_id']; //kljuc1 = ID => galerija_id
+//		if(isset($_POST['submit']))
+//{
+//$ename = $_POST['galerija_link'];
+//}
 			?>
 
 

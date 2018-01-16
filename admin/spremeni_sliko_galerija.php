@@ -41,11 +41,8 @@ include 'meni-stranski.php';
  
            
 <?php
-//$mykey1=$_REQUEST['key0'];
-//$asid2=$_REQUEST['asid2'];
-
 $kljuc1=$_REQUEST['zbrisi'];
-$kljuc2=$_REQUEST['id2'];
+$kljuc2=$_REQUEST['id'];
 include"povezi.php";
 
 
@@ -72,8 +69,8 @@ move_uploaded_file($_FILES["nalozi"]["tmp_name"],"nalozene_slike_galerija/".$_FI
 
 
 mysqli_query($povezi,"UPDATE galerija SET slika_galerija='$slika' WHERE ID='$kljuc1'");
-echo "<script>location.href='galerija_uredi_slike.php?ids=$kljuc2'</script>";
-//echo "SUCESS!";
+echo "<script>location.href='galerija_uredi_slike.php?id=$kljuc2'</script>";
+//echo "dela";
 }
 ?>
 

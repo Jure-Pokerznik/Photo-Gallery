@@ -10,6 +10,8 @@
 
     <title>Nadzorna plošča | Foto galerija</title>
 
+	
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
