@@ -27,7 +27,7 @@ include 'meni.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $uporabnik = $_POST['username'];
 $geslo = $_POST['password'];
-if ($uporabnik == '' || $geslo == '') //ce je username ali password '' (empty) napise error, da ni pravo UN in geslo
+if ($uporabnik == '' || $geslo == '') //ce je username ali password '' (empty) napise error, je treba vpisat UN in geslo
 	{
         echo "<div class='alert alert-danger'>Vnesite uporabniško ime in geslo!</div>";
 
@@ -47,7 +47,8 @@ if (mysqli_num_rows($result)>0) //če je več kot 0 rezultatov (torej =>1) in ce
    $row = mysqli_fetch_array($result);
 
    if ($row[3] == 'admin')
-	$_SESSION['uname']=$uporabnik;
+	$_SESSION['uname']=$uporabnik;//uporabimo za seje na drugih straneh, da je uporabnik v seji. 
+	//TODO: uporabi seje na drugih straneh, kjer je to potrebno
     echo "<script>location.href='admin-domov.php'</script>";
 
  
