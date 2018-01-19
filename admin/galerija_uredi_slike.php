@@ -48,24 +48,28 @@ $result = mysqli_query ($povezi, "SELECT * FROM galerija WHERE status='procesira
 <table class="table">
 	<thead>
 		<tr>
-			<th width="50%">Ime in tagi</th>
+			<th width="50%">Ime in ključne besede</th>
 			<th width="25%">Predogled slike</th>
 			<th colspan=2 width="25%">Uredi</th>
 		</tr>
 	</thead>
 
 <?php
+
+
 while ($row = mysqli_fetch_assoc($result)) {
+$tagi = $row["tagi"];
+$out = str_replace(',', ', ', $tagi); //dodamo presledek
 ?>
 
 <tbody>
 <tr>	<!-- th ime -->
-	<td><?php echo "<b>Ime:</b> ".$row["slika_galerija"]; ?><br><br><?php echo "<b>Ključne besede: </b>".$row["tagi"]; ?></td>
+	<td><?php echo "<b>Ime:</b> ".$row["slika_galerija"]; ?><br><br><?php echo "<b>Ključne besede: </b>".$out; ?></td>
 	<!-- th predogled -->
 	<td><a href='spremeni_sliko_galerija.php?zbrisi=<?php echo  $row["ID"];?>&id=<?php echo $row["album_id"]; ?>'><img src="zmanjsane_slike_galerija/<?php echo $row["slika_galerija"]; ?>" width="290px" />Spremeni sliko</a></td>
 
 	<!-- th izbrisi in premakni -->
-	<td><a href='zbrisi_galerijo.php?galerija_id=<?php echo $row["ID"]; ?>&galerija_album_id=<?php echo $row["album_id"]; ?>'>Izbriši</a><br><a href='premakni.php?galerija_id=<?php echo $row["ID"];?>&id=<?php echo $row["album_id"]; ?>'>!Premakni!</a><br><a href='#?galerija_id=<?php echo $row["ID"];?>&id=<?php echo $row["album_id"]; ?>'>!Spremeni ključne besede!</a> 
+	<td><a href='zbrisi_galerijo.php?galerija_id=<?php echo $row["ID"]; ?>&galerija_album_id=<?php echo $row["album_id"]; ?>'>Izbriši</a><br><a href='premakni.php?galerija_id=<?php echo $row["ID"];?>&id=<?php echo $row["album_id"]; ?>'>Premakni</a><br><a href='kb.php?galerija_id=<?php echo $row["ID"];?>&id=<?php echo $row["album_id"]; ?>'>Spremeni ključne besede</a> 
                                         </tr>
 										</tbody>
 

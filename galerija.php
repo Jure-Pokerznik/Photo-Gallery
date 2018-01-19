@@ -200,12 +200,12 @@ while ($row = mysqli_fetch_assoc($result)){
 $tagi=$row['tagi'];
 $slika=$row['slika_galerija'];
 //$status=$row['status'];
-
+$out = str_replace(',', ', ', $tagi); //dodamo presledek
 echo "<div class='card h-100'>
 		<a href='admin/nalozene_slike_galerija/$slika' class='inline-block galerija'>
 		<img src='admin/zmanjsane_slike_galerija/$slika' height='100%' width='100%' class='inline-block'/></a>
 	<div class='card-body'>
-              <p class='card-text'><b>Ključne besede: </b><br>$tagi</p>
+              <p class='card-text'><b>Ključne besede: </b><br>$out</p>
             </div>
 	</div>";
 

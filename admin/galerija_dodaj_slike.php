@@ -88,7 +88,7 @@ $filename = "zmanjsane_slike_galerija/".$ime_datoteke;
 imagejpeg($nova,$filename,100);
 imagedestroy($originalna);
 move_uploaded_file($zacasna_datoteka,"$lokacija/".$ime_datoteke); //move_uploaded_file ( string $filename , string $destination )
-            }else{                                  // rename the file if another one exist
+            }else{                                  //datoteki dodamo čas dodajanja, da ob nalaganju isto poimenovanih datotek ne pride do prepisa. 
                 $nova_lokacija="$lokacija/".$ime_datoteke.time();
                  rename($zacasna_datoteka,$nova_lokacija) ;               
             }
@@ -132,6 +132,7 @@ move_uploaded_file($zacasna_datoteka,"$lokacija/".$ime_datoteke); //move_uploade
                                         </div>
                     <div class="form-group">
                                             <label>Tagi (Uporabite , za dodajanje več tagov)</label>
+	<!-- https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/ -->
                                             <input data-role="tagsinput" type="text" name="tagi" id="tagi" />
                                         </div>
                                         <button type="submit" class="btn btn-primary" name="submit">Naloži</button>

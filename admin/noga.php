@@ -8,7 +8,7 @@
 
     <!--Bootstrap core JavaScript--> 
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.bundle.min.js"></script>
 
 
 	<!-- Bootsrap tagsinput za tagganje galerije -->
